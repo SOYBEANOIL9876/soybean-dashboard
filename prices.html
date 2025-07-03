@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Soybean Oil Prices</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body { background: #121212; color: white; font-family: Arial; margin: 0; }
+    .header { background: linear-gradient(90deg, #0f2027, #203a43, #2c5364); padding: 15px; font-size: 1.2rem; display: flex; justify-content: space-between; }
+    .container { display: flex; }
+    .sidebar { width: 240px; background: #1e272e; display: flex; flex-direction: column; }
+    .sidebar a { color: #dfe6e9; text-decoration: none; padding: 14px 24px; }
+    .sidebar a:hover { background: #2d3436; }
+    .content { padding: 20px; flex-grow: 1; }
+    canvas { background: white; border-radius: 8px; padding: 10px; }
+    @media (max-width: 768px) { .container { flex-direction: column; } .sidebar { flex-direction: row; overflow-x: auto; } }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div>Soybean Oil Prices</div>
+  </div>
+  <div class="container">
+    <nav class="sidebar">
+      <a href="index.html">Brazil Soybean</a>
+      <a href="argentina.html">Argentina Soybean</a>
+      <a href="prices.html">Prices</a>
+      <a href="news.html">Market News</a>
+    </nav>
+    <div class="content">
+      <h2>Daily Soybean Oil Prices (Sample)</h2>
+      <canvas id="priceChart" width="400" height="200"></canvas>
+    </div>
+  </div>
+  <script>
+    const ctx = document.getElementById('priceChart').getContext('2d');
+    new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+        datasets: [{
+          label: 'USD/ton',
+          data: [980, 985, 990, 1005, 995, 1010, 1020],
+          borderColor: '#00cec9',
+          backgroundColor: 'rgba(0,206,201,0.1)',
+          fill: true,
+          tension: 0.3
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            labels: { color: '#ffffff' }
+          }
+        },
+        scales: {
+          x: { ticks: { color: '#ffffff' } },
+          y: { ticks: { color: '#ffffff' } }
+        }
+      }
+    });
+  </script>
+</body>
+</html>
